@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f2236">
+  <meta name="description" content="Northstar account console with embedded card diagnostics.">
+  <title>Northstar | Card diagnostics</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button type="button" id="presenter-open" class="presenter-open">Modify scenario</button>
+  <header class="topbar">
+    <a class="brand" href="#overview" aria-label="Northstar account console home"><span class="brand-mark" aria-hidden="true">N</span><span><b>Northstar</b><small>Account Console</small></span></a>
+    <label class="global-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input aria-label="Search account" value="NS-20481" readonly></label>
+    <div class="topbar-right">
+      <button class="icon-btn" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button>
+      <div class="operator"><span class="av" aria-hidden="true">OR</span><span>Owen Reyes<small>Card operations</small></span></div>
+    </div>
+  </header>
+  <div class="shell">
+    <nav class="sidenav" aria-label="Main navigation">
+      <div class="nav-group"><span class="nav-label">Account</span>
+        <a class="nav-item active" href="#overview"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/></svg>Overview</a>
+        <a class="nav-item" href="#activity"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Activity</a>
+        <a class="nav-item" href="#card"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg>Cards</a>
+      </div>
+      <div class="nav-group"><span class="nav-label">Tools</span>
+        <a class="nav-item" href="#troubleshoot"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M8 10.5l1.7 1.7L13.5 8"/></svg>Card diagnostics</a>
+      </div>
+    </nav>
+    <main id="main" tabindex="-1">
+      <div class="main-inner">
+        <nav class="crumbs" aria-label="Breadcrumb"><ol id="crumbs"></ol><span class="crumbs-ref">Account <b class="mono">NS-20481</b></span></nav>
+        <section id="account-context" class="context-bar" aria-label="Customer and account"></section>
+        <section id="overview" class="page view active-view" aria-labelledby="page-title">
+          <div class="page-head">
+            <div><h1 id="page-title">Account overview</h1><p>Review account context and recent card activity before running a diagnostic.</p></div>
+            <button id="launch-diagnostics" class="button primary"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M8 10.5l1.7 1.7L13.5 8"/></svg>Run card diagnostics</button>
+          </div>
+          <div class="kpi-strip" id="kpi-strip" aria-label="Account metrics"></div>
+          <div class="overview-grid">
+            <section class="panel" aria-labelledby="chart-title">
+              <div class="panel-head"><h2 id="chart-title">Payment activity</h2><div class="segmented" role="group" aria-label="Chart measure"><button type="button" class="seg active" data-measure="volume" aria-pressed="true">Volume</button><button type="button" class="seg" data-measure="count" aria-pressed="false">Count</button></div></div>
+              <div class="chart-wrap"><div id="activity-chart"></div></div>
+            </section>
+            <section class="panel" id="card" aria-labelledby="card-title">
+              <div class="panel-head"><h2 id="card-title">Card on file</h2><span class="hint">Visa debit · <span class="mono">•••• 1842</span></span></div>
+              <dl class="kv">
+                <div><dt>Status</dt><dd id="card-status"></dd></div>
+                <div><dt>Issued</dt><dd>Oct 05, 2026</dd></div>
+                <div><dt>Delivery</dt><dd id="delivery-status"></dd></div>
+              </dl>
+              <div class="panel-subhead">Linked accounts</div>
+              <ul class="linked"><li><span><b>Savings</b><small class="mono">•••• 4490</small></span><span class="status st-success"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg>Linked</span></li><li><span><b>Checking</b><small class="mono">•••• 2031</small></span><span class="status st-success"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg>Verified</span></li></ul>
+              <div class="panel-foot"><button id="card-details" class="text-link">View card details</button></div>
+            </section>
+          </div>
+          <section class="panel tabs-panel" id="activity" aria-label="Account records">
+            <div class="tabs" role="tablist" aria-label="Account records">
+              <button role="tab" id="tab-payments" class="tab active" aria-selected="true" aria-controls="tp-payments">Payments</button>
+              <button role="tab" id="tab-cards" class="tab" aria-selected="false" aria-controls="tp-cards" tabindex="-1">Cards</button>
+              <button role="tab" id="tab-contacts" class="tab" aria-selected="false" aria-controls="tp-contacts" tabindex="-1">Contact history</button>
+            </div>
+            <div id="tp-payments" role="tabpanel" aria-labelledby="tab-payments" class="table-wrap"><table><thead><tr><th>Transaction</th><th>Reference</th><th>Date</th><th>Status</th><th class="right">Amount</th></tr></thead><tbody id="activity-body"></tbody></table></div>
+            <div id="tp-cards" role="tabpanel" aria-labelledby="tab-cards" class="table-wrap" hidden><table><thead><tr><th>Card</th><th>Status</th><th>Issued</th><th>Note</th></tr></thead><tbody id="cards-body"></tbody></table></div>
+            <div id="tp-contacts" role="tabpanel" aria-labelledby="tab-contacts" class="table-wrap" hidden><table><thead><tr><th>Date</th><th>Channel</th><th>Summary</th></tr></thead><tbody id="contacts-body"></tbody></table></div>
+          </section>
+        </section>
+        <section id="troubleshoot" class="page view" aria-labelledby="diagnostics-title"></section>
+      </div>
+    </main>
+  </div>
+  <div id="context-dialog-root"></div>
+  <div id="result-popup-root"></div>
+  <div id="presenter-root"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="diagnostic-records.js"></script>
+  <script src="diagnostic-conditions.js"></script>
+  <script src="app.js"></script>
+  <script src="presenter.js"></script>
+</body>
+</html>
+
