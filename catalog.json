@@ -38,43 +38,6 @@
       "accessMode": "local-file",
       "status": "Included in kit",
       "notes": "Standalone HTML prototype copied into this repository root; it opens alongside the dashboard."
-    },
-    {
-      "id": "advocate-workflow-guidance",
-      "name": "Advocate Workflow Guidance Tool",
-      "description": "Static browser-based decision support for verification, investigation, resolution, documentation, and call closure.",
-      "problem": "Advocates navigate multiple knowledge articles and tools, increasing handling time and creating inconsistent resolution approaches.",
-      "category": "Advocate Workflow",
-      "tags": [
-        "Operational Efficiency",
-        "Process Automation",
-        "Customer Experience"
-      ],
-      "preview": "",
-      "accessUrl": "https://owenreyes007-sudo.github.io/Cash-App-Advocate-Workflow-Guidance/",
-      "sourceUrl": "https://github.com/owenreyes007-sudo/Cash-App-Advocate-Workflow-Guidance",
-      "accessMode": "external",
-      "status": "Source repository found; verify live URL",
-      "notes": "The repository has GitHub Pages enabled. The candidate URL is based on its repository name; deployment response has not yet been confirmed."
-    },
-    {
-      "id": "cash-app-workflow-tool",
-      "name": "Cash App Advocate Workflow Tool",
-      "description": "Browser-based workflow guidance platform with shared verification, decision-tree flows, recommendations, and knowledge references.",
-      "problem": "Support advocates need one place to follow complex procedures and locate the right tools, references, and verification steps.",
-      "category": "Advocate Workflow",
-      "tags": [
-        "Operational Efficiency",
-        "Process Automation",
-        "Customer Experience"
-      ],
-      "preview": "",
-      "accessUrl": "https://github.com/owenreyes007-sudo/Cash-App-Workflow-Tool",
-      "sourceUrl": "https://github.com/owenreyes007-sudo/Cash-App-Workflow-Tool",
-      "accessMode": "source-only",
-      "status": "Source repository found",
-      "notes": "No confirmed public deployment URL was identified. The prototype remains accessible via its source repository."
     }
   ]
 }
-
