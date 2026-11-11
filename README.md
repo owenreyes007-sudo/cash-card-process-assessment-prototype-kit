@@ -4,9 +4,9 @@ A simple dashboard for the two prototypes supplied for this kit.
 
 ## Included prototypes
 
-- **Northstar Card Diagnostics** — opens the existing [Northstar deployment](https://owenreyes007-sudo.github.io/card-diagnostics-automation/) and links to its original source repository.
-- **Cash App Card · Mobile Experience** — includes the supplied `Cash App final.html` file in this repository.
+- **Northstar Account Console · Card Diagnostics** — the supplied presenter build is included under `northstar/`, with its runtime files unchanged.
+- **Cash App Card · Mobile Experience** — the supplied standalone `Cash App final.html` is included at the repository root.
 
 ## Maintain the dashboard
 
-Edit `catalog.json` to update names, descriptions, business problems, categories, previews, or links. The dashboard is a static site built with `index.html`, `styles.css`, and `app.js`. The supplied prototypes remain unchanged.
+Edit `catalog.json` to update names, descriptions, business problems, categories, previews, or links. The dashboard is a static site built with `index.html`, `styles.css`, and `app.js`. No other prototypes are registered in this kit.
