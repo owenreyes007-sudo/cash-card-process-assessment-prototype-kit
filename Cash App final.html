@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cash App</title>
+<style>
+:root{--bg:#070908;--s1:#141716;--s2:#1d211f;--ln:#2a2f2c;--tx:#fff;--mu:#9aa39e;--g:#00d64f;--g2:#007a33;--amb:#f5b942;--red:#ff4d6d;--r:20px;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#000;color:var(--tx);font-family:var(--sans)}
+body{display:flex;justify-content:center;align-items:center}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:inherit}
+:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.phone{position:relative;width:min(100%,410px);height:min(100%,860px);background:var(--bg);overflow:hidden;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+@media(min-width:500px){.phone{border-radius:44px;border:8px solid #1a1a1a;height:min(96vh,860px)}}
+#view{flex:1;overflow-y:auto;overflow-x:hidden;padding:12px 16px 104px}
+#view::-webkit-scrollbar{display:none}
+h1{font-size:22px;font-weight:700}h2{font-size:18px;font-weight:700}
+.mu{color:var(--mu)}.g{color:var(--g)}.sm{font-size:12px}
+.row{display:flex;align-items:center;gap:12px}.sp{justify-content:space-between}
+.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cir{width:40px;height:40px;border-radius:50%;background:var(--s2);display:grid;place-items:center;flex:none;position:relative}
+.dot{position:absolute;top:9px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--g)}
+.av{width:44px;height:44px;border-radius:50%;background:var(--g);color:#04210f;font-weight:800;display:grid;place-items:center;flex:none}
+.sec{display:flex;justify-content:space-between;align-items:baseline;margin:20px 0 10px}
+.sec button{color:var(--g);font-weight:600;font-size:14px;padding:6px 0}
+/* card */
+.car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;scrollbar-width:none;margin-top:12px}
+.car::-webkit-scrollbar{display:none}.car>*{scroll-snap-align:center;flex:0 0 100%}
+.pay{position:relative;width:100%;aspect-ratio:1.586/1;border-radius:18px;padding:5.5% 6%;background:radial-gradient(circle at 80% 20%,#262b28,#101312 70%);border:1px solid #333a36;overflow:hidden;display:block}
+.pay.alt{background:radial-gradient(circle at 80% 20%,#0b7a37,#06220f 75%);border-color:#0f6b33}
+.pay:before{content:"$";position:absolute;right:16%;top:6%;font-size:min(34vw,150px);font-weight:900;color:rgba(255,255,255,.04);line-height:1}
+.pay .lg{width:11%;aspect-ratio:1;background:#fff;color:#000;border-radius:22%;display:grid;place-items:center;font-weight:900;font-size:clamp(14px,5vw,22px)}
+.pay .chip{position:absolute;left:6%;top:36%;width:13%;aspect-ratio:1.25;border-radius:6px;background:linear-gradient(135deg,#e5e5e5,#a9a9a9);border:1px solid #888}
+.pay .nfc{position:absolute;right:6%;top:6%;font-weight:700;letter-spacing:-2px;transform:rotate(0)}
+.pay .num{position:absolute;left:6%;bottom:7%;font-size:clamp(13px,4vw,17px);letter-spacing:1px}
+.pay .net{position:absolute;right:6%;bottom:6%;text-align:right;font-weight:900;font-style:italic;font-size:clamp(18px,6vw,28px);line-height:1}
+.pay .net small{display:block;font-size:.4em;font-style:normal;letter-spacing:1px}
+.pg{display:flex;justify-content:center;gap:6px;margin:10px 0}.pg i{width:6px;height:6px;border-radius:50%;background:#3b423e}.pg i.on{background:#fff}
+.panel{background:var(--s1);border:1px solid var(--ln);border-radius:var(--r);padding:16px}
+.bal{font-size:34px;font-weight:800;letter-spacing:-.5px;margin-top:2px}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.act{background:var(--s2);border-radius:16px;padding:12px 4px;min-height:64px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;font-weight:600}
+.act.p{background:var(--g);color:#04210f}
+.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.sc{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;padding:4px 0}.sc .cir{color:var(--g);width:46px;height:46px}
+.promo{border-radius:var(--r);background:linear-gradient(120deg,var(--g2),#00a847);padding:16px;min-height:130px;position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;overflow:hidden}
+.promo b{font-size:19px;line-height:1.2;max-width:62%}.promo .mini{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:34%;aspect-ratio:1.586;border-radius:10px;background:#0d100e;display:grid;place-items:center;color:var(--g);font-weight:900;font-size:26px;border:1px solid #1b4}
+.pill{background:#fff;color:#000;border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;min-height:36px}
+.tx{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--ln);width:100%}
+.tx:last-child{border:0}.tx .t{flex:1;min-width:0}.tx b{display:block}.in{color:#7dffa8}
+.nav{position:absolute;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));background:rgba(20,23,22,.96);border:1px solid var(--ln);border-radius:26px;display:grid;grid-template-columns:repeat(5,1fr);padding:6px;backdrop-filter:blur(10px)}
+.nav button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;padding:8px 0;color:var(--mu);min-height:52px}.nav .on{color:var(--g);font-weight:700}
+.bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;min-height:44px}.bar .cir{background:none;margin-left:-8px}
+.in-f{width:100%;background:var(--s2);border:1px solid transparent;border-radius:99px;color:#fff;padding:13px 16px;font:inherit}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:12px 0;scrollbar-width:none}.chip2{padding:9px 16px;border-radius:99px;background:var(--s2);font-weight:600;font-size:14px;white-space:nowrap}.chip2.on{background:var(--g);color:#04210f}
+.li{display:flex;align-items:center;gap:14px;background:var(--s1);border-radius:16px;padding:14px;margin-bottom:8px;width:100%;min-height:56px}.li .cir{background:var(--s2);color:var(--g);width:36px;height:36px}.li .t{flex:1}.li small{display:block;color:var(--mu);font-size:13px}
+.big{background:var(--g);color:#04210f;font-weight:800;border-radius:99px;padding:16px;text-align:center;width:100%;margin-top:12px;font-size:16px}
+.big.alt{background:var(--s2);color:#fff}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);margin:10px 0}.keys button{font-size:26px;padding:14px;text-align:center}
+.amt{text-align:center;font-size:56px;font-weight:800;margin:14px 0 0}
+.seg{display:flex;background:var(--s2);border-radius:99px;padding:4px;margin:0 auto 6px;width:fit-content}.seg button{padding:8px 20px;border-radius:99px;font-weight:600}.seg .on{background:var(--g);color:#04210f}
+.stat{border-radius:16px;padding:14px;margin:14px 0;background:var(--s1)}.stat b{display:block;font-size:17px;margin-bottom:4px}
+.kv{margin:12px 0}.kv small{color:var(--mu);display:block;font-size:13px}.kv b{font-size:16px}
+.hero{text-align:center;margin:6px 0 16px}.hero .av{width:84px;height:84px;margin:0 auto 10px;background:var(--s1);color:var(--g);font-size:36px}.hero .a{font-size:42px;font-weight:800;margin-top:10px}
+.toast{position:absolute;left:20px;right:20px;bottom:96px;background:#fff;color:#000;padding:12px 16px;border-radius:14px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9;text-align:center}.toast.on{opacity:1}
+.tag{display:inline-block;font-size:11px;border:1px solid var(--ln);border-radius:99px;padding:3px 9px;color:var(--mu);margin-top:6px}
+.note{text-align:center;color:var(--mu);font-size:12px;margin-top:12px}
+.cg{margin:18px 0 8px;color:var(--mu);font-weight:600;font-size:14px}
+.tl{display:flex;gap:14px;margin:0 0 22px}.tl i{width:28px;height:28px;border-radius:50%;background:var(--s2);display:grid;place-items:center;font-style:normal;flex:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<div class="phone"><main id="view" aria-live="polite"></main><nav class="nav" id="nav" aria-label="Primary"></nav><div class="toast" id="toast" role="status"></div></div>
+<script>
+/* ===== Mock data (all fictional, separated from presentation) ===== */
+const USER={name:"Owen",full:"Owen Reyes",tag:"$owenreyes",bal:2450.80};
+const CARDS=[{n:"Cash App Card",last:"7635",alt:0},{n:"Virtual card",last:"4102",alt:1}];
+const QUICK=[["plus","Add money","addmoney"],["send","Send","send"],["recv","Request","request"],["grid","More","directory",1]];
+const EXPLORE=[{id:"bills",n:"Bills",i:"bill",av:"Available to most accounts"},{id:"savings",n:"Savings",i:"save",av:"Eligibility varies by account"},{id:"stocks",n:"Stocks",i:"trend",av:"Eligibility varies by account and region"},{id:"bitcoin",n:"Bitcoin",i:"btc",av:"Not available in all regions"},{id:"borrow",n:"Borrow",i:"hand",av:"Available only when eligible"},{id:"afterpay",n:"Afterpay",i:"card",av:"Availability varies by merchant"}];
+const PROMOS=[{h:"Get exclusive offers with Cash App",go:"offers"},{h:"Explore ways to save with Round Ups",go:"stub:roundups"}];
+const DIR=[["Money Movement",[["addmoney","Add Money","Cash, bank or paycheck","addmoney"],["withdraw","Withdraw","Move cash to a bank"],["dd","Direct Deposit","Get paid early"],["transfers","Transfers","Between accounts"]]],
+["Card and Spending",[["cardctl","Card Controls","Lock, limits, notifications","card"],["delivery","Card Delivery","Track your card","carddelivery"],["replace","Card Replacement","Lost or damaged"],["roundups","Round Ups","Save spare change"],["offers","Offers","Cardholder offers","offers"]]],
+["Grow Your Money",[["savings","Savings"],["stocks","Stocks"],["bitcoin","Bitcoin"]]],
+["Other Financial Services",[["borrow","Borrow"],["afterpay","Afterpay"],["bills","Bills"],["taxes","Taxes","Prepare and file your taxes"],["earnings","Earnings","Paycheck tools"]]],
+["Account and Support",[["profile","Profile","","profile"],["security","Security"],["banks","Linked Banks"],["settings","Settings"],["help","Help"]]]];
+const KINDS={completed:{l:"Completed",c:"g",t:"Your payment was completed. If there is a problem with this purchase, contact the merchant first.",a:[["Contact support","toast:Connecting you to support…"],["Report an issue","toast:Issue report started"]]},
+refunded:{l:"Refunded",c:"g",t:"The refund has been recorded. Time for funds to appear depends on the merchant and payment method.",a:[["View refund details","toast:Refund of $52.99 was recorded"],["Contact support","toast:Connecting you to support…"]]},
+pending:{l:"Pending",c:"amb",t:"The merchant may still be finalizing this purchase. The amount can change when it completes, usually within 1–3 business days. There is nothing you need to do right now.",a:[["View transaction help","stub:help"],["Contact support","toast:Connecting you to support…"]]},
+lock:{l:"Declined: card locked",c:"red",t:"Declined because your Cash App Card is locked. Unlock it in Card controls, then try again.",a:[["Open Card controls","card"],["Contact support","toast:Connecting you to support…"],["Report an issue","toast:Issue report started"]]},
+nsf:{l:"Declined: insufficient funds",c:"red",t:"Declined because there was not enough cash available. Add money, then try again.",a:[["Add money","addmoney"],["Contact support","toast:Connecting you to support…"],["Report an issue","toast:Issue report started"]]}};
+const TXNS=[{id:1,n:"Amazon",a:-52.99,k:"completed",d:"Today",tm:"12:45 PM",st:"AMAZON"},{id:2,n:"Starbucks",a:-6.75,k:"completed",d:"Today",tm:"9:20 AM",st:"STARBUCKS"},{id:3,n:"Direct Deposit",a:1200,k:"completed",d:"Today",tm:"6:00 AM",st:"PAYROLL",r:"Received"},{id:4,n:"Maria Santos",a:120,k:"completed",d:"Yesterday",tm:"5:12 PM",st:"P2P",r:"Received"},{id:5,n:"Netflix",a:-15.99,k:"completed",d:"Yesterday",tm:"1:00 AM",st:"NETFLIX.COM"},{id:6,n:"DoorDash",a:-18.50,k:"pending",d:"Sep 25",tm:"8:12 PM",st:"DOORDASH"},{id:7,n:"Apple",a:-9.99,k:"completed",d:"Sep 25",tm:"7:00 AM",st:"APPLE.COM"},{id:8,n:"Online purchase",a:52.99,k:"refunded",d:"Sep 24",tm:"10:24 AM",st:"ONLINE PURCHASE"},{id:9,n:"7-Eleven",a:-175,k:"lock",d:"Sep 22",tm:"10:02 AM",st:"7-ELEVEN"},{id:10,n:"Online purchase",a:-42,k:"nsf",d:"Sep 21",tm:"3:30 PM",st:"ONLINE PURCHASE"}];
+const HOME_TX=[1,4,6];
+/* ===== Helpers ===== */
+const P={home:"M3 11l9-8 9 8v10h-6v-6H9v6H3z",clock:"M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 2",dollar:"M12 3v18M16 7h-5a3 3 0 000 6h2a3 3 0 010 6H8",card:"M3 6h18v12H3zM3 10h18",user:"M12 4a4 4 0 100 8 4 4 0 000-8zM4 21c0-4 4-6 8-6s8 2 8 6",plus:"M12 5v14M5 12h14",send:"M4 12l16-8-6 16-2-6z",recv:"M17 7L7 17M7 8v9h9",grid:"M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z",bell:"M6 16V11a6 6 0 0112 0v5l2 2H4zM10 21h4",scan:"M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4M8 12h8",eye:"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z",back:"M15 5l-7 7 7 7",chev:"M9 5l7 7-7 7",search:"M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-5-5",bill:"M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6",save:"M12 3a9 9 0 100 18 9 9 0 000-18zM12 8v8M9 12h6",trend:"M3 17l6-6 4 4 8-8M15 7h6v6",btc:"M9 5v14M9 6h5a3 3 0 010 6H9m0 0h6a3 3 0 010 6H9",hand:"M4 14l5-2 5 2 6-3M4 18l8 2 8-4",star:"M12 3l3 6 6 1-4.5 4.5L18 21l-6-3-6 3 1.5-6.5L3 10l6-1z",lock:"M6 11h12v9H6zM8 11V8a4 4 0 018 0v3",ok:"M5 12l5 5 9-10"};
+const I=n=>`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="${P[n]||P.star}"/></svg>`;
+const $=s=>document.querySelector(s);
+const money=(a,s)=>(s?(a<0?"−":"+"):"")+"$"+Math.abs(a).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const S={tab:"home",stack:[],hide:false,f:"All",q:"",amt:"",mode:"send"};
+const cur=()=>S.stack[S.stack.length-1]||{s:S.tab};
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)}
+const TABS=[["home","Home","home"],["activity","Activity","clock"],["send","Pay","dollar"],["card","Card","card"],["profile","Profile","user"]];
+const TABOF={home:"home",directory:"home",addmoney:"home",offers:"home",stub:"home",activity:"activity",txn:"activity",send:"send",request:"send",card:"card",carddelivery:"card",profile:"profile"};
+function go(t){ /* t = "screen" or "screen:arg"; toast:msg shows feedback */
+ const [s,...r]=t.split(":"),a=r.join(":");
+ if(s==="toast")return toast(a);
+ if(TABS.some(x=>x[0]===s)&&["home","activity","card","profile"].includes(s)||s==="send"&&0){S.tab=s;S.stack=[]}
+ else S.stack.push({s,a});
+ S.amt="";S.mode=s==="request"?"request":"send";
+ if(s==="send"||s==="request"){} render();$("#view").scrollTop=0}
+function back(){S.stack.pop();render()}
+function tab(t){S.stack=[];S.tab=t==="send"?"home":t;if(t==="send"){S.stack=[{s:"send"}];S.amt=""}render();$("#view").scrollTop=0}
+/* ===== Components ===== */
+const bar=t=>`<div class="bar"><button class="cir" data-back aria-label="Back">${I("back")}</button><h1>${t}</h1></div>`;
+const payCard=c=>`<button class="pay ${c.alt?"alt":""}" data-go="card" aria-label="${c.n} ending ${c.last}. Open card"><span class="lg">$</span><span class="chip"></span><span class="nfc" aria-hidden="true">)))</span><span class="num">•••• ${c.last}</span><span class="net">VISA<small>DEBIT</small></span></button>`;
+const txRow=t=>{const out=t.a<0,ref=t.k==="refunded";const stat=t.r||({completed:"Completed",pending:"Pending",refunded:"Refunded",lock:"Declined",nsf:"Declined"})[t.k];
+ return `<button class="tx" data-go="txn:${t.id}"><span class="av" style="background:${t.k==="pending"?"#ff4d6d":t.k.match(/lock|nsf/)?"#2a1a1e":"var(--s2)"};color:${t.k.match(/lock|nsf/)?"var(--red)":"#fff"}">${t.n[0]}</span><span class="t"><b>${t.n}</b><span class="mu sm">${t.d} · ${stat}</span></span><b class="${!out?"in":""}" ${t.k.match(/lock|nsf/)?'style="text-decoration:line-through;color:var(--mu)"':""}>${money(t.a,1)}</b></button>`};
+const lis=(arr)=>arr.map(([i,n,d,go])=>`<button class="li" data-go="${go||"stub:"+i}"><span class="cir">${I(i)}</span><span class="t"><b>${n}</b>${d?`<small>${d}</small>`:""}</span>${I("chev")}</button>`).join("");
+/* ===== Screens ===== */
+const V={
+home(){return `<div class="row sp"><div class="row"><button class="av" data-go="profile" aria-label="Profile">${USER.name[0]}</button><div><div class="mu sm">Good evening,</div><b style="font-size:18px">${USER.name}</b></div></div><div class="row" style="gap:8px"><button class="cir" data-go="stub:notifications" aria-label="Notifications, new">${I("bell")}<i class="dot"></i></button><button class="cir" data-go="stub:scan" aria-label="Scan QR code">${I("scan")}</button></div></div>
+<div class="car" id="cc" aria-label="Cards">${CARDS.map(payCard).join("")}</div><div class="pg" id="cp">${CARDS.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</div>
+<section class="panel"><div class="row sp"><div><div class="mu sm">Available balance</div><div class="bal">${S.hide?"$ ••••••":money(USER.bal)}</div></div><button class="cir" data-hide aria-label="${S.hide?"Show":"Hide"} balance" aria-pressed="${S.hide}">${I("eye")}</button></div>
+<div class="acts">${QUICK.map(([i,n,go,p])=>`<button class="act ${p?"p":""}" data-go="${go}">${I(i)}${n}</button>`).join("")}</div></section>
+<div class="sec"><h2>Explore Cash App</h2><button data-go="directory">See all</button></div>
+<div class="grid6">${EXPLORE.map(e=>`<button class="sc" data-go="stub:${e.id}"><span class="cir">${I(e.i)}</span>${e.n}</button>`).join("")}</div>
+<div class="car" id="pc" style="margin-top:16px">${PROMOS.map(p=>`<div class="promo"><span class="sm" style="letter-spacing:.5px">Cash App Card</span><b>${p.h}</b><button class="pill" data-go="${p.go}">Learn more</button><span class="mini">$</span></div>`).join("")}</div><div class="pg" id="pp">${PROMOS.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</div>
+<div class="sec" style="margin-top:8px"><h2>Recent activity</h2><button data-go="activity">View all</button></div>${HOME_TX.map(i=>txRow(TXNS[i-1])).join("")}`},
+activity(){return `<h1 style="margin:8px 0 14px">Activity</h1><input class="in-f" id="q" placeholder="Search transactions" aria-label="Search transactions" value="${S.q}"><div class="chips">${["All","Money in","Money out","Requests"].map(f=>`<button class="chip2 ${S.f===f?"on":""}" data-f="${f}">${f}</button>`).join("")}</div><div id="al">${actList()}</div>`},
+txn(){const t=TXNS[cur().a-1],k=KINDS[t.k];return bar("Transaction details")+`<div class="hero"><div class="av">${t.n[0]}</div><b style="font-size:20px">${t.n}</b><div class="mu sm">${t.d} · ${t.tm}</div><div class="a">${money(t.a,1)}</div></div>
+<div class="stat"><b class="${k.c==="g"?"g":""}" style="${k.c==="amb"?"color:var(--amb)":k.c==="red"?"color:var(--red)":""}">${k.l}</b><span class="mu">${k.t}</span></div>
+<div class="kv"><small>Payment method</small><b>Cash App Card •••• 7635</b></div><div class="kv"><small>On statement as</small><b>${t.st}</b></div><div class="kv"><small>Transaction number</small><b>CA${123456780+t.id}</b></div>
+<h2 style="margin:20px 0 10px">What you can do</h2>${k.a.map(([l,go])=>`<button class="li" data-go="${go}"><span class="t"><b>${l}</b></span>${I("chev")}</button>`).join("")}`},
+directory(){return bar("Explore Cash App")+`<input class="in-f" id="ds" placeholder="Search features" aria-label="Search features"><div id="dl">${dirList("")}</div>`},
+stub(){const id=cur().a,e=EXPLORE.find(x=>x.id===id),nm=e?e.n:(id[0].toUpperCase()+id.slice(1));return bar(nm)+`<div class="panel" style="text-align:center;padding:32px 20px"><span class="cir" style="margin:0 auto 14px;color:var(--g)">${I(e?e.i:"star")}</span><h2>${nm}</h2><p class="mu" style="margin-top:8px">This section isn't available yet.</p><span class="tag">${e?e.av:"Availability varies by account"}</span></div><button class="big" data-go="toast:Done">Continue</button>`},
+addmoney(){const a=S.amt;return bar("Add money")+`<div class="mu sm">Available balance</div><div class="bal" style="margin-bottom:14px">${money(USER.bal)}</div><div class="panel"><div class="mu sm">Amount</div><b style="font-size:26px">$ ${a||"0.00"}</b></div><div class="chips">${[10,50,100].map(v=>`<button class="chip2" data-amt="${v}" style="flex:1">$${v}</button>`).join("")}<button class="chip2" data-amt="">Other</button></div><h2 style="margin:18px 0 10px">Choose how to add money</h2>${lis([["recv","Direct deposit","Get paid into Cash App"],["send","Bank or wire transfer","Move money from a linked bank"],["card","Paper money","Deposit at a supported location"],["bill","Deposit a check","Submit an eligible check"],["save","Auto reload","Automatically add money"]])}<button class="big" data-go="toast:${a?"$"+a+" added":"Pick an amount first"}">Continue</button>`},
+send(){return pad("Send","Next","To: name, $Cashtag, phone, or email")},request(){return pad("Request","Request","From: name, $Cashtag, phone, or email")},
+card(){return `<h1 style="margin:8px 0 14px">Cash App Card</h1><div style="padding:0 6%">${payCard(CARDS[0])}</div><div class="acts" style="grid-template-columns:repeat(3,1fr);margin:16px 0"><button class="act" data-go="toast:card ${S.lock?"unlocked":"locked"}" data-lock>${I("lock")}${S.lock?"Unlock":"Lock"} card</button><button class="act" data-go="toast:Opening wallet setup…">${I("card")}Add to wallet</button><button class="act" data-go="toast:Open Card Controls to view card details">${I("bill")}Card info</button></div>${lis([["card","Card controls","Manage how your card works"],["save","Round Ups","Save spare change","stub:roundups"],["trend","Card delivery","Track or replace your card","carddelivery"],["star","Offers","Explore card offers","offers"]])}`},
+carddelivery(){const st=[["Order placed","Completed",1],["Card shipped","Completed",1],["Out for delivery","Waiting",0,1],["Delivered","Upcoming"]];return bar("Card delivery")+`<div class="panel"><span class="mu">Your Cash App Card</span><h1 style="margin:4px 0">On its way</h1><span class="mu sm">Estimated delivery: Oct 22–28</span></div><h2 style="margin:20px 0 14px">Delivery progress</h2>${st.map(([a,b,d,w])=>`<div class="tl"><i class="${d?"g":""}" style="${w?"color:var(--amb)":""}">${d?"✓":w?"●":"○"}</i><div><b>${a}</b><div class="sm" style="color:${d?"var(--g)":w?"var(--amb)":"var(--mu)"}">${b}</div></div></div>`).join("")}<button class="big alt" data-go="stub:help">Need help with delivery?</button><button class="big" data-go="toast:Connecting you to support…">Contact support</button>`},
+offers(){return bar("Offers & promos")+`<div class="promo"><span class="sm">Cash App Card</span><b>Get exclusive offers with Cash App</b><button class="pill" data-go="toast:Offers refresh regularly">Learn more</button><span class="mini">$</span></div><h2 style="margin:20px 0 10px">Explore offers</h2>${lis([["star","Cardholder offers","Discover available merchant offers"],["star","Ways to save","Explore eligible savings features"],["star","Personalized picks","Offers may vary by account"]])}<p class="note">Offers may vary by account.</p>`},
+profile(){return `<h1 style="margin:8px 0">Profile</h1><div class="hero"><div class="av" style="background:var(--g);color:#04210f">OR</div><b style="font-size:20px">${USER.full}</b><div class="mu">${USER.tag}</div><button class="chip2" style="margin-top:12px" data-go="toast:Profile editing opens here">Edit profile</button></div>${lis([["lock","Account & security","Protect your account"],["bill","Linked banks","Manage connected accounts"],["user","Personal information","Manage your details"],["grid","Settings","Preferences and privacy"],["star","Help & support","Get assistance","stub:help"]])}`}};
+function pad(t,btn,ph){const a=S.amt||"0";return `<div class="bar"><button class="cir" data-back aria-label="Back">${I("back")}</button><div class="seg" style="margin:0 auto"><button class="${S.mode==="send"?"on":""}" data-go="send">Send</button><button class="${S.mode==="request"?"on":""}" data-go="request">Request</button></div><span style="width:32px"></span></div><div class="in-f" style="color:var(--mu)">${ph}</div><div class="amt">$${a}</div><div class="mu sm" style="text-align:center">USD</div><div class="chips" style="justify-content:center">${[10,50,100].map(v=>`<button class="chip2" data-amt="${v}">$${v}</button>`).join("")}</div><div class="keys">${[1,2,3,4,5,6,7,8,9,".",0,"⌫"].map(k=>`<button data-k="${k}" aria-label="${k==="⌫"?"Delete":k}">${k}</button>`).join("")}</div><button class="big" data-next>${btn}</button>`}
+function actList(){const q=S.q.toLowerCase();let L=TXNS.filter(t=>t.n.toLowerCase().includes(q)&&(S.f==="All"||S.f==="Money in"&&t.a>0||S.f==="Money out"&&t.a<0));if(!L.length)return `<p class="mu" style="text-align:center;margin-top:40px">No matching activity. Try another filter.</p>`;let d="",h="";L.forEach(t=>{if(t.d!==d){d=t.d;h+=`<div class="cg">${d}</div>`}h+=txRow(t)});return h}
+function dirList(q){q=q.toLowerCase();return DIR.map(([c,it])=>{const m=it.filter(x=>x[1].toLowerCase().includes(q));return m.length?`<div class="cg">${c}</div>${lis(m.map(([i,n,d,go])=>[i,n,d,go||"stub:"+i]))}`:""}).join("")||`<p class="mu" style="text-align:center;margin-top:40px">No features match.</p>`}
+/* ===== Render + events ===== */
+function render(){const c=cur();$("#view").innerHTML=V[c.s]();const t=TABOF[c.s]==="home"&&S.stack.length&&c.s==="send"?"send":(c.s==="send"||c.s==="request")?"send":TABOF[c.s];
+ $("#nav").innerHTML=TABS.map(([id,l,i])=>`<button data-tab="${id}" class="${t===id?"on":""}" ${t===id?'aria-current="page"':""}>${I(i)}${l}</button>`).join("");
+ const cc=$("#cc"),pc=$("#pc");[[cc,"#cp"],[pc,"#pp"]].forEach(([e,p])=>e&&e.addEventListener("scroll",()=>{const n=Math.round(e.scrollLeft/e.clientWidth);document.querySelectorAll(p+" i").forEach((d,k)=>d.classList.toggle("on",k===n))}));}
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.back!==undefined)return back();
+ if(b.dataset.tab)return tab(b.dataset.tab);
+ if(b.dataset.hide!==undefined){S.hide=!S.hide;return render()}
+ if(b.dataset.f){S.f=b.dataset.f;return render()}
+ if(b.dataset.amt!==undefined){S.amt=b.dataset.amt;return render()}
+ if(b.dataset.k){const k=b.dataset.k;if(k==="⌫")S.amt=S.amt.slice(0,-1);else if(k==="."&&S.amt.includes("."))return;else if(S.amt.length<7)S.amt+=k;return render()}
+ if(b.dataset.next!==undefined){toast(S.amt>0?`$${S.amt} ${S.mode==="send"?"sent":"requested"}`:"Enter an amount first");return}
+ if(b.dataset.lock!==undefined){toast(S.lock?"card unlocked":"card locked");S.lock=!S.lock;return render()}
+ if(b.dataset.go)go(b.dataset.go)});
+document.addEventListener("input",e=>{if(e.target.id==="q"){S.q=e.target.value;$("#al").innerHTML=actList()}if(e.target.id==="ds")$("#dl").innerHTML=dirList(e.target.value)});
+render();
+</script>
+<style>
+.pay .lg{position:absolute;left:6%;top:8%;width:11%;min-width:26px;z-index:2}.pay .chip{top:42%;z-index:1}.pay .num{z-index:2}
+.ban{display:flex;align-items:center;gap:12px;width:100%;background:linear-gradient(120deg,#00a847,var(--g));color:#04210f;border-radius:var(--r);padding:14px 16px;margin-top:12px}.ban b{display:block;font-size:16px}.ban .pill{background:#04210f;color:#fff;flex:none}.ban.w{background:linear-gradient(120deg,#7a1b2d,#c42b4b);color:#fff}.ban.w .pill{background:#fff;color:#7a1b2d}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}@media(max-width:340px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{background:var(--s1);border:1px solid var(--ln);border-radius:16px;min-height:84px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:600;text-align:center}.tile .ic{color:var(--g);width:24px;height:24px}
+.dots{display:flex;gap:12px;justify-content:center;margin:18px 0}.dots i{width:14px;height:14px;border-radius:50%;background:var(--s2)}.dots i.on{background:var(--g)}.err{color:var(--red);text-align:center;min-height:22px}
+.big[disabled]{opacity:.4;cursor:not-allowed}.vf{height:200px;border:2px dashed var(--g);border-radius:20px;display:grid;place-items:center;color:var(--mu);text-align:center;padding:16px;margin:12px 0}.bartrack{height:8px;background:var(--s2);border-radius:9px;overflow:hidden;margin:8px 0}.bartrack i{display:block;height:100%;background:var(--g)}
+</style>
+<script>
+/* ===== Revision: shared state, flows, tiles (extends the base script) ===== */
+Object.assign(S,{cs:"active",act:"pending",pin:"",ok:false,cvv:"",err:"",rep:"0",reason:"",rk:"",bl:{"Gambling sites":true,"Online lotto":false,"Adult content":false,"Purchase alerts":true,"Security alerts":true}});
+const DELIV={state:"transit",carrier:"USPS",tn:"9400111899223344556677",url:"https://tools.usps.com/tracking/",eta:"Oct 22–28"};
+const DS=[["placed","Order placed"],["prep","Preparing shipment"],["transit","Shipped / in transit"],["out","Out for delivery"],["done","Delivered"],["delay","Delayed"],["notrk","Tracking unavailable"]];
+const LIM={cat:"Daily card spending",limit:500,used:380,reset:"Resets daily at 12:00 AM"};
+const REF="REP-48213";
+TXNS.push({id:11,n:"Apple Store",a:-899,k:"nsflimit",d:"Sep 20",tm:"2:15 PM",st:"APPLE STORE"}); /* key contains 'nsf' so base list styles it as declined */
+KINDS.nsflimit={l:"Declined: limit reached",c:"red",t:""};
+DIR[1][1][2][3]="replace";
+const ICON={addmoney:"plus",withdraw:"recv",dd:"bill",transfers:"send",cardctl:"lock",delivery:"card",replace:"card",roundups:"save",offers:"star",savings:"save",stocks:"trend",bitcoin:"btc",borrow:"hand",afterpay:"card",bills:"bill",taxes:"bill",earnings:"dollar",profile:"user",security:"lock",banks:"home",settings:"grid",help:"star"};
+Object.assign(TABOF,{lockc:"card",report:"card",replace:"card",pin:"card",vcard:"card",merchant:"card",csettings:"card",activate:"home",qr:"home",nfc:"home",actok:"home",done:"home",limits:"activity"});
+const _go=go,_back=back,_render=render;
+go=function(t){const[s,...r]=t.split(":"),a=r.join(":");S.err="";if(s==="pin")S.pin="";
+ if(s==="do")return DO(a);if(s==="tab")return tab(a);if(s==="ret"){S.tab="activity";S.stack=[{s:"txn",a}];return render()}_go(t)};
+back=function(){S.err="";S.pin="";S.ok=false;S.cvv="";_back()};
+render=function(){if(cur().s!=="vcard"){S.ok=false;S.cvv=""}_render()};
+const done=(t,m,b)=>{S.done={t,m,b};S.stack.pop();_go("done")};
+function DO(a){const[n,x]=a.split(":"),ret=a.slice(n.length+1),rb=ret?[["Back to transaction","ret:"+ret]]:[];
+ if(n==="lock"){const was=S.cs==="locked";S.cs=was?"active":"locked";return done(was?"Card unlocked":"Card locked",(was?"Your card can be used again.":"Payments with this card will be declined until you unlock it.")+"",[...rb,["Card controls","tab:card"],["Activity","tab:activity"]])}
+ if(n==="fund"){const v=+S.amt;if(!v)return toast("Choose an amount first");USER.bal+=v;S.amt="";return done("Money added",`$${v.toFixed(2)} added. New balance ${money(USER.bal)}. The original payment stays Declined; you may need to retry it.`,[...rb,["Back to Activity","tab:activity"],["Home","tab:home"]])}
+ if(n==="report"){S.cs=x;S.rk="";return done("Card reported "+x,"This card is permanently blocked, which is different from a temporary lock. Next, replace it.",[["Replace card","replace"],["Home","tab:home"]])}
+ if(n==="rep"){S.cs="active";S.act="pending";DELIV.state="placed";S.rep="0";return done("Replacement requested",`Reference ${REF}. Your new card is on its way and will need activation.`,[["Track delivery","carddelivery"],["Home","tab:home"]])}
+ if(n==="startact"){if(S.act==="pending")S.act="progress";return _go("activate")}
+ if(n==="actok"){S.act="active";S.stack=[{s:"actok"}];return render()}
+ if(n==="fail"){S.err=ret;return render()}}
+function banner(){if(S.cs==="lost"||S.cs==="stolen")return `<button class="ban w" data-go="replace"><span style="flex:1"><b>Card reported ${S.cs}</b>Replace it to keep paying with your card.</span><span class="pill">Replace card</span></button>`;
+ if(S.act==="active")return"";const p=S.act==="progress";return `<button class="ban" data-go="do:startact"><span style="flex:1"><b>${p?"Activation in progress":"Activate your Cash App Card"}</b>${p?"Pick up where you left off.":"Your card is ready. Activate it to get started."}</span><span class="pill">${p?"Resume":"Activate card"}</span></button>`}
+const H=V.home;V.home=()=>{const h=H(),i=h.indexOf('<div class="car" id="cc"');return h.slice(0,i)+banner()+h.slice(i)};
+const stl=()=>S.cs==="lost"?"Reported lost":S.cs==="stolen"?"Reported stolen":S.cs==="locked"?"Locked":S.act==="active"?"Active":"Awaiting activation";
+const cta=(l,g,c)=>`<button class="big ${c||""}" data-go="${g}">${l}</button>`;
+const tgl=k=>`<button class="li" data-tog="${k}" aria-pressed="${!!S.bl[k]}"><span class="t"><b>${k}</b></span><span class="tag" style="margin:0">${S.bl[k]?"On":"Off"}</span></button>`;
+V.card=()=>{const L=S.cs==="locked",R=S.cs==="lost"||S.cs==="stolen";return `<h1 style="margin:8px 0 14px">Card Controls</h1><div style="padding:0 6%;position:relative">${payCard(CARDS[0])}<button data-go="pin" aria-label="View virtual card details" style="position:absolute;right:calc(6% + 14px);top:36%;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid #3b423e;display:grid;place-items:center;z-index:3">${I("eye")}</button></div><div class="row sp" style="margin:12px 0"><span class="mu">•••• 7635</span><span class="tag" style="margin:0">${stl()}</span></div>${banner()}`+(R?cta("Replace card","replace"):cta((L?"Unlock":"Lock")+" card","lockc"))+`<h2 style="margin:20px 0 10px">Manage your card</h2>`+lis([["lock",L?"Unlock card":"Lock card","Temporarily pause payments",R?"toast:Card is reported; replace it":"lockc"],["bell","Report lost or stolen","Permanently block this card","report"],["card","Replace card","Request a new card","replace"],["eye","View virtual card details","PIN required","pin"],["trend","Card delivery","Track your card","carddelivery"],["grid","Merchant controls","Block types of businesses","merchant"],["star","Additional settings","PIN and notifications","csettings"]])};
+V.lockc=()=>{const L=S.cs==="locked";return bar(L?"Unlock card":"Lock card")+`<div class="panel"><h2>${L?"Unlock your card?":"Lock your card?"}</h2><p class="mu" style="margin-top:8px">${L?"Purchases will work again.":"Purchases are declined until you unlock it. You can unlock any time."}</p></div>`+cta(L?"Unlock card":"Lock card","do:lock:"+(cur().a||""))+`<button class="big alt" data-back>Cancel</button>`};
+V.report=()=>bar("Report lost or stolen")+`<p class="mu">This permanently blocks the card, unlike a temporary lock. You'll be offered a replacement next.</p><div style="margin-top:14px">`+[["lost","Lost card","I can't find my card"],["stolen","Stolen card","Someone took my card"]].map(([k,n,d])=>`<button class="li" data-sel="rk:${k}" aria-pressed="${S.rk===k}" style="${S.rk===k?"outline:2px solid var(--g)":""}"><span class="t"><b>${n}</b><small>${d}</small></span></button>`).join("")+`</div>`+cta("Confirm report",S.rk?"do:report:"+S.rk:"toast:Select lost or stolen first")+`<button class="big alt" data-back>Cancel</button>`;
+V.replace=()=>{const rs=S.reason||(S.cs==="lost"?"Lost":S.cs==="stolen"?"Stolen":"");if(S.rep=="1")return bar("Review request")+`<div class="panel"><div class="kv"><small>Card</small><b>Cash App Card •••• 7635</b></div><div class="kv"><small>Reason</small><b>${rs}</b></div><div class="kv"><small>Delivery</small><b>Estimated 7–10 days</b></div></div>`+cta("Confirm replacement","do:rep")+`<button class="big alt" data-sel="rep:0">Edit</button>`;
+ return bar("Replace card")+`<h2 style="margin-bottom:10px">Why do you need a replacement?</h2>`+["Damaged","Lost","Stolen","Chip or tap not working","Never received"].map(r=>`<button class="li" data-sel="reason:${r}" aria-pressed="${rs===r}" style="${rs===r?"outline:2px solid var(--g)":""}"><span class="t"><b>${r}</b></span></button>`).join("")+`<button class="big" ${rs?"":"disabled"} data-sel="rep:1">Continue</button>`};
+V.merchant=()=>bar("Merchant controls")+`<p class="mu" style="margin-bottom:12px">Choose which types of businesses to block.</p>`+["Gambling sites","Online lotto","Adult content"].map(tgl).join("");
+V.csettings=()=>bar("Additional settings")+lis([["lock","Card PIN","Change your card PIN","toast:Opening PIN settings…"]])+tgl("Purchase alerts")+tgl("Security alerts")+`<p class="note">Spending limits aren't adjustable here.</p>`;
+V.pin=()=>{S.ok=false;return bar("Verify it's you")+`<p class="mu">Enter your 6-digit PIN to view your virtual card details.</p><div class="dots" aria-label="${S.pin.length} of 6 digits entered">${[0,1,2,3,4,5].map(i=>`<i class="${i<S.pin.length?"on":""}"></i>`).join("")}</div><div class="err" role="alert">${S.err}</div><div class="keys">${[1,2,3,4,5,6,7,8,9,"",0,"⌫"].map(k=>k===""?"<span></span>":`<button data-p="${k}" aria-label="${k==="⌫"?"Delete":k}">${k}</button>`).join("")}</div><button class="big" data-pok ${S.pin.length==6?"":"disabled"}>Continue</button><button class="big alt" data-back>Cancel</button><p class="note">Hint: 123456</p>`};
+V.vcard=()=>{if(!S.ok)return bar("Virtual card")+`<p class="mu">Verification required.</p>`+cta("Verify PIN","pin");
+ return bar("Virtual card details")+`<div class="pay"><span class="lg">$</span><span class="chip"></span><span class="nfc">)))</span><span class="num" style="bottom:27%;font-size:clamp(15px,5vw,21px);letter-spacing:2px">4532 1098 7654 3210</span><span class="num" style="font-size:11px">OWEN REYES · 12/29 · CVV ${S.cvv?"123":"•••"}</span><span class="net">VISA<small>DEBIT</small></span></div><div style="margin-top:14px"><button class="li" data-cp="4532109876543210"><span class="t"><b>Copy card number</b></span></button><button class="li" data-cp="12/29"><span class="t"><b>Copy expiration date</b></span></button><button class="li" data-sel="cvv:${S.cvv?"":"1"}"><span class="t"><b>${S.cvv?"Hide":"Reveal"} CVV</b></span></button></div><button class="big" data-back>Hide card details</button><p class="note">You'll need to verify again next time.</p>`};
+V.activate=()=>bar("Activate card")+`<p class="mu" style="margin-bottom:14px">Choose how you'd like to activate your card.</p>`+lis([["scan","Scan QR code","QR may be on your card packaging","qr"],["card","Tap to activate","Hold your card to your phone","nfc"]]);
+V.qr=()=>bar("Scan QR code")+`<div class="vf">Point your camera at the QR code on the card packaging</div><div class="err" role="alert">${S.err}</div>`+cta("Scan code","do:actok")+cta("Having trouble scanning?","do:fail:Couldn't read the QR code. Try again.","alt")+`<button class="big alt" data-back>Cancel</button>`;
+V.nfc=()=>bar("Tap to activate")+`<div class="vf">Hold your card to the back of your phone</div><div class="err" role="alert">${S.err}</div>`+cta("Hold card near phone","do:actok")+cta("Tap isn't working?","do:fail:This device doesn't support tap activation. Try scanning the QR code instead.","alt")+`<button class="big alt" data-back>Cancel</button>`;
+V.actok=()=>`<div class="hero" style="margin-top:60px"><div class="av" style="background:var(--g);color:#04210f">✓</div><h1>Card activated</h1><p class="mu" style="margin-top:8px">Your Cash App Card is active and ready to use.</p></div>`+cta("Card management","tab:card")+cta("Home","tab:home","alt");
+V.done=()=>{const d=S.done;return `<div class="hero" style="margin-top:50px"><div class="av" style="background:var(--g);color:#04210f">✓</div><h1>${d.t}</h1><p class="mu" style="margin-top:8px">${d.m}</p></div>`+d.b.map(([l,g],i)=>cta(l,g,i?"alt":"")).join("")};
+V.addmoney=()=>bar("Add money")+`<div class="mu sm">Available balance</div><div class="bal" style="margin-bottom:14px">${money(USER.bal)}</div><div class="panel"><div class="mu sm">Amount</div><b style="font-size:26px">$ ${S.amt||"0.00"}</b></div><div class="chips">${[10,50,100,200].map(v=>`<button class="chip2" data-amt="${v}" style="flex:1">$${v}</button>`).join("")}</div><h2 style="margin:14px 0 10px">From</h2><div class="li"><span class="t"><b>Chase Bank •••• 1234</b><small>Linked bank</small></span></div>`+cta("Confirm add money","do:fund:"+(cur().a||""))+``;
+V.limits=()=>{const r=LIM.limit-LIM.used,t=TXNS[cur().a-1]||TXNS[10];return bar("Limits")+`<div class="panel"><b>${LIM.cat}</b><div class="bartrack"><i style="width:${LIM.used/LIM.limit*100}%"></i></div><div class="row sp"><span class="mu">Limit</span><b>$${LIM.limit}</b></div><div class="row sp"><span class="mu">Used</span><b>$${LIM.used}</b></div><div class="row sp"><span class="mu">Remaining</span><b class="g">$${r}</b></div><p class="mu sm" style="margin-top:8px">${LIM.reset}</p></div><div class="stat"><b>Next steps</b><span class="mu">Your ${money(t.a)} payment was more than the $${r} remaining, so it was declined. Try a smaller amount or wait for the reset. Limit changes aren't available here.</span></div>`+cta("Back to transaction","ret:"+t.id)};
+const DT=t=>{const ck=S.cs==="locked",s="toast:Connecting you to support…",m=[["Contact support",s]];return({
+ completed:{rc:"00 · Approved",ex:"Your payment was completed. If there's a problem with this purchase, contact the merchant first.",cta:["Report an issue","toast:Contact the merchant first. If it isn't resolved, we can help with a dispute"],more:m},
+ refunded:{rc:"RF · Refund posted",ex:"A refund of $52.99 was recorded against original reference CA123456781. Timing depends on the merchant and payment method.",cta:["View refund details","toast:Refund $52.99 · original ref CA123456781"],more:m},
+ pending:{rc:"PN · Authorization hold",ex:"The merchant is still finalizing this purchase and the amount may change. This usually settles in 1–3 business days. You can't speed it up or cancel it from here.",cta:["View transaction help","stub:help"],more:m},
+ nsf:{rc:"51 · Insufficient funds",ex:"Your available balance was too low for this payment. Add money, then retry with the merchant.",cta:["Add money","addmoney:"+t.id],more:m},
+ lock:{rc:"62 · Card locked",ex:"Declined because your card was locked."+(ck?" It is still locked.":" Your card is unlocked now, but this payment stays declined."),cta:[ck?"Unlock card":"Open card controls",ck?"lockc:"+t.id:"tab:card"],more:m},
+ nsflimit:{rc:"61 · Limit exceeded",ex:"Declined because it would exceed your daily card spending limit.",cta:["View limits","limits:"+t.id],more:m}})[t.k]};
+V.txn=()=>{const t=TXNS[cur().a-1],k=KINDS[t.k],x=DT(t),c=k.c==="amb"?"var(--amb)":k.c==="red"?"var(--red)":"var(--g)",d=k.c==="red";
+ return bar("Transaction details")+`<div class="hero"><div class="av">${t.n[0]}</div><b style="font-size:20px">${t.n}</b><div class="mu sm">${t.d} · ${t.tm}</div><div class="a">${money(t.a,1)}</div></div><div class="stat"><b style="color:${c}">${k.l}</b><span class="mu">${x.ex}</span></div><div class="kv"><small>Payment method</small><b>Cash App Card •••• 7635</b></div><div class="kv"><small>Reason code</small><b>${x.rc}</b></div><div class="kv"><small>Transaction number</small><b>CA${123456780+t.id}</b></div>${d?'<p class="mu sm">This stays Declined in your history. You may need to retry the payment.</p>':""}<h2 style="margin:18px 0 6px">What you can do</h2>`+cta(x.cta[0],x.cta[1])+x.more.map(([l,g])=>cta(l,g,"alt")).join("")};
+actList=function(){const q=S.q.toLowerCase();let L=TXNS.filter(t=>t.n.toLowerCase().includes(q)&&(S.f==="All"||S.f==="Money in"&&t.a>0||S.f==="Money out"&&t.a<0));if(!L.length)return `<p class="mu" style="text-align:center;margin-top:40px">No matching activity.</p>`;let d="",h="";L.forEach(t=>{if(t.d!==d){d=t.d;h+=`<div class="cg">${d}</div>`}h+=txRow(t).replace("· undefined","· Declined")});return h};
+V.carddelivery=()=>{const D=DELIV,s=D.state,ix={placed:0,prep:1,transit:2,out:3,done:4,delay:2,notrk:2}[s],lab=DS.find(x=>x[0]===s)[1],has=ix>=2&&s!=="notrk",steps=["Order placed","Preparing shipment","In transit","Out for delivery","Delivered"];
+ const eta=s==="done"?"Delivered":s==="delay"?"Delayed. New estimate Oct 30–Nov 3":"Estimated delivery: "+D.eta;
+ return bar("Card delivery")+`<div class="panel"><span class="mu">Your Cash App Card</span><h1 style="margin:4px 0">${lab}</h1><span class="mu sm">${eta}</span><div class="kv"><small>Carrier</small><b>${D.carrier}</b></div><div class="kv"><small>Tracking number</small><b>${has?D.tn:"Not available"}</b></div></div>${has?`<button class="li" style="margin-top:10px" data-cp="${D.tn}"><span class="t"><b>Copy tracking number</b></span></button>`+(D.url.startsWith("https://")?cta("Track with "+D.carrier,"").replace('data-go=""',`data-open="${D.url}"`):""):`<div class="stat"><span class="mu">${s==="notrk"?"Tracking isn't available for this shipment. Contact support if it hasn't arrived by the estimate.":"A tracking number appears once the card ships."}</span></div>`}${s==="delay"?'<div class="stat"><span class="mu">Your shipment is running late. No action needed; contact support if it is much later.</span></div>':""}<h2 style="margin:18px 0 12px">Delivery progress</h2>${steps.map((n,i)=>{const dn=i<ix||s==="done",cu=i===ix&&s!=="done";return `<div class="tl"><i style="color:${dn?"var(--g)":cu?"var(--amb)":"var(--mu)"}">${dn?"✓":cu?"●":"○"}</i><div><b>${n}</b></div></div>`}).join("")}${cta("Contact support","toast:Connecting you to support…","alt")}<div class="cg">Preview delivery status</div><div class="chips" style="flex-wrap:wrap">${DS.map(([k,n])=>`<button class="chip2 ${s===k?"on":""}" data-sel="ds:${k}">${n}</button>`).join("")}</div>`};
+V.directory=()=>bar("Explore Cash App")+`<input class="in-f" id="ds" placeholder="Search features" aria-label="Search features"><div id="dl">${dirList("")}</div>`;
+dirList=function(q){q=q.toLowerCase();return DIR.map(([c,it])=>{const m=it.filter(x=>(x[1]+" "+c).toLowerCase().includes(q));return m.length?`<div class="cg">${c}</div><div class="tiles">${m.map(([i,n,d,g])=>`<button class="tile" data-go="${g||"stub:"+i}">${I(ICON[i]||"star")}${n}</button>`).join("")}</div>`:""}).join("")||`<p class="mu" style="text-align:center;margin-top:40px">No features match your search.</p>`};
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const d=b.dataset;
+ if(d.p!==undefined){if(d.p==="⌫")S.pin=S.pin.slice(0,-1);else if(S.pin.length<6)S.pin+=d.p;S.err="";return render()}
+ if(d.pok!==undefined){if(S.pin.length<6)return;if(S.pin==="123456"){S.ok=true;S.pin="";S.stack.pop();return _go("vcard")}S.pin="";S.err="Incorrect PIN. Try again.";return render()}
+ if(d.sel){const i=d.sel.indexOf(":"),k=d.sel.slice(0,i),v=d.sel.slice(i+1);if(k==="ds")DELIV.state=v;else S[k]=v;return render()}
+ if(d.tog){S.bl[d.tog]=!S.bl[d.tog];return render()}
+ if(d.cp){try{navigator.clipboard.writeText(d.cp).then(()=>toast("Copied"),()=>toast("Copy blocked here: "+d.cp))}catch(_){toast("Copy unavailable: "+d.cp)}return}
+ if(d.open){window.open(d.open,"_blank","noopener");return}});
+render();
+</script></body></html>
+
