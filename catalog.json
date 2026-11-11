@@ -14,11 +14,11 @@
         "Process Automation"
       ],
       "preview": "",
-      "accessUrl": "https://owenreyes007-sudo.github.io/card-diagnostics-automation/",
-      "sourceUrl": "https://github.com/owenreyes007-sudo/card-diagnostics-automation",
-      "accessMode": "external",
-      "status": "Live demo",
-      "notes": "Uses the existing GitHub Pages deployment, preserving the original prototype repository as the source of truth."
+      "accessUrl": "./northstar/index.html",
+      "sourceUrl": "https://github.com/owenreyes007-sudo/cash-card-process-assessment-prototype-kit/tree/main/northstar",
+      "accessMode": "local-bundle",
+      "status": "Included in kit",
+      "notes": "The supplied Northstar presenter build is included intact under northstar/; the original repository was not changed."
     },
     {
       "id": "cash-app-card-mobile",
